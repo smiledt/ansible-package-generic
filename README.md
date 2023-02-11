@@ -9,6 +9,7 @@ Sudo access to the server.
 ## Required variables
 
 Required variables are listed here, along with default example values. Any of these defaults can be overwritten by using the vars role directory. 
+    
     package_list:
       - cowsay
       - lolcat
