@@ -3,6 +3,27 @@
 
 - name: Install packages
   package:
-    name: "{{ item }}"
+    name: "{{ item.name }}"
     state: present
   with_items: "{{ package_list }}"
+
+- name: Create the {{ local_path }} directory if it does not exist
+  file:
+    path: "{{ user_homedir }}/{{ local_path }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ user_group }}"
+    mode: '755'
+  when: username is defined and local_path is defined    
+
+- name: Set up a symlink in {{ local_path }} when the package installed_name variable is defined
+  file:
+    path: "{{ user_homedir }}/{{ local_path }}/{{ item.link_name | default(item.name) }}"
+    src: "/usr/bin/{{ item.installed_name }}"
+    state: link
+    owner: "{{ username }}"
+    group: "{{ user_group }}"
+    mode: '644'
+    follow: false
+  with_items: "{{ package_list }}"
+  when: item.installed_name is defined and username is defined and local_path is defined
