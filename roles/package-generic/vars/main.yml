@@ -1,0 +1,37 @@
+---
+# vars file for package-generic
+
+# package_list:
+#   - htop # Process monitoring software
+#   - bpytop # Process monitoring software
+#   - ncdu # Disk space drill down tool
+#   - speedtest-cli # Basic CLI speed test, doesn't take up much space
+#   - iptraf-ng # Network interface troubleshooting and drill down
+#   - tmux # Session handling
+#   - mosh # Session handling
+#   - ranger # Basic terminal file explorer
+#   - bat # https://github.com/sharkdp/bat
+#   - exa
+#   - duf
+#   - fd-find
+
+package_list:
+  - name: eza
+  - name: bat
+    installed_name: batcat # https://github.com/sharkdp/bat
+  - name: ncdu # Disk space drill down tool
+  - name: speedtest-cli # Basic CLI speed test, doesn't take up much space
+  - name: iptraf-ng # Network interface troubleshooting and drill down
+  - name: tmux # Session handling
+  - name: mosh # Session handling
+  - name: ranger # Basic terminal file explorer
+  - name: duf
+  - name: fd-find
+    installed_name: fdfind
+    link_name: fd
+  - name: lnav
+
+username: smiledt
+user_group: domain users
+user_homedir: "/home/{{ username }}@plumbus.lab"
+local_path: .local/bin
